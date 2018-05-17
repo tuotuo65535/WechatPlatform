@@ -42,6 +42,11 @@ public class Menu {
         btn1_5.setType(WxConsts.MENU_BUTTON_CLICK);
         btn1_5.setKey(MenuKey.XINAO_SONG);
         btn1_5.setName("洗脑神曲");
+        WxMenu.WxMenuButton btn1_6 = new WxMenu.WxMenuButton();
+        btn1_6.setType(WxConsts.MENU_BUTTON_VIEW);
+        btn1_6.setKey(MenuKey.URL_JUMP);
+        btn1_6.setName("点我跳转");
+        btn1_6.setUrl("www.baidu.com");
 
         WxMenu.WxMenuButton btn2 = new WxMenu.WxMenuButton();
         btn2.setType(WxConsts.MENU_BUTTON_CLICK);

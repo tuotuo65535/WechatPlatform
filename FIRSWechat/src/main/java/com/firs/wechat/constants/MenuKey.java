@@ -9,4 +9,5 @@ public class MenuKey {
     public static final String NET_HOT_SONG = "NET_HOT_SONG";
     public static final String HUAYU_SONG = "HUAYU_SONG";
     public static final String XINAO_SONG = "XINAO_SONG";
+    public static final String URL_JUMP = "URL_JUMP";
 }
