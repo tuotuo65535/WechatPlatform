@@ -2,7 +2,6 @@ package com.firs.wechat.controller;
 
 import com.firs.wechat.constants.MenuKey;
 import com.firs.wechat.handler.*;
-import com.firs.wechat.matcher.UrlMatcher;
 import com.firs.wechat.matcher.WhoAmIMatcher;
 import com.soecode.wxtools.api.IService;
 import com.soecode.wxtools.api.WxConsts;
@@ -51,7 +50,6 @@ public class WxController {
             System.out.println("消息：\n " + wx.toString());
             router.rule().msgType(WxConsts.XML_MSG_TEXT).matcher(new WhoAmIMatcher()).handler(new WhoAmIHandler()).end()
                     .rule().msgType(WxConsts.XML_MSG_TEXT).handler(ConfigHander.getInstance()).end()
-                    .rule().msgType(WxConsts.XML_MSG_TEXT).matcher(new UrlMatcher()).handler(new UrlHandler(request, response)).end()
                     .rule().event(WxConsts.EVT_CLICK).eventKey(MenuKey.HELP).handler(HelpDocHandler.getInstance()).next()
                     .rule().eventKey(MenuKey.CHANGE_NEWS).handler(ChangeNewsHandler.getInstance()).next()
                     .rule().eventKey(MenuKey.HOT_SONG).handler(RankHandler.getInstance()).next()
