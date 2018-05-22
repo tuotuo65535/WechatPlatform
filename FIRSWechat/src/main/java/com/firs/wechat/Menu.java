@@ -17,11 +17,12 @@ public class Menu {
         IService iService = new WxService();
         WxMenu menu = new WxMenu();
         List<WxMenu.WxMenuButton> btnList = new ArrayList<>();
-
+        
         //飙升功能
         WxMenu.WxMenuButton btn1 = new WxMenu.WxMenuButton();
-        btn1.setName("分类");
+        btn1.setName("公司业务");
         List<WxMenu.WxMenuButton> subList = new ArrayList<>();
+        /*
         WxMenu.WxMenuButton btn1_1 = new WxMenu.WxMenuButton();
         btn1_1.setType(WxConsts.MENU_BUTTON_CLICK);
         btn1_1.setKey(MenuKey.HOT_SONG);
@@ -41,7 +42,12 @@ public class Menu {
         WxMenu.WxMenuButton btn1_5 = new WxMenu.WxMenuButton();
         btn1_5.setType(WxConsts.MENU_BUTTON_CLICK);
         btn1_5.setKey(MenuKey.XINAO_SONG);
-        btn1_5.setName("洗脑神曲");
+        btn1_5.setName("洗脑神曲");*/
+        WxMenu.WxMenuButton btn1_1 = new WxMenu.WxMenuButton();
+        btn1_1.setType(WxConsts.MENU_BUTTON_VIEW);
+        btn1_1.setKey(MenuKey.URL_JUMP);
+        btn1_1.setName("管控平台");
+        btn1_1.setUrl("http://firs.viphk.ngrok.org/app");
 
         WxMenu.WxMenuButton btn2 = new WxMenu.WxMenuButton();
         btn2.setType(WxConsts.MENU_BUTTON_CLICK);
@@ -53,7 +59,7 @@ public class Menu {
         btn3.setKey(MenuKey.HELP);
         btn3.setName("帮助");
 
-        subList.addAll(Arrays.asList(btn1_1, btn1_2, btn1_3, btn1_4, btn1_5));
+        subList.addAll(Arrays.asList(btn1_1/*, btn1_2, btn1_3, btn1_4, btn1_5*/));
         btn1.setSub_button(subList);
 
         //将三个按钮设置进btnList
