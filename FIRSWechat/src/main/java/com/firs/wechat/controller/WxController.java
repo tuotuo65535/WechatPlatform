@@ -10,6 +10,9 @@ import com.soecode.wxtools.api.WxService;
 import com.soecode.wxtools.bean.WxXmlMessage;
 import com.soecode.wxtools.bean.WxXmlOutMessage;
 import com.soecode.wxtools.util.xml.XStreamTransformer;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +26,15 @@ import java.io.PrintWriter;
 @RestController
 @RequestMapping("/wx")
 public class WxController {
+	
+	private static Log log = LogFactory.getLog(WxController.class);
 
     private IService iService = new WxService();
 
     @GetMapping
     public String check(String signature, String timestamp, String nonce, String echostr) {
         if (iService.checkSignature(signature, timestamp, nonce, echostr)) {
+        	log.info("token验证成果！echostr:" +echostr);
             return echostr;
         }
         return null;
@@ -45,7 +51,8 @@ public class WxController {
         try {
             // 微信服务器推送过来的是XML格式。
             WxXmlMessage wx = XStreamTransformer.fromXml(WxXmlMessage.class, request.getInputStream());
-            System.out.println("消息：\n " + wx.toString());
+            System.out.println("消息：\n " + wx.toString());			
+			log.info("消息：\n " + wx.toString());
             router.rule().msgType(WxConsts.XML_MSG_TEXT).matcher(new WhoAmIMatcher()).handler(new WhoAmIHandler()).end()
                     .rule().msgType(WxConsts.XML_MSG_TEXT).handler(ConfigHander.getInstance()).end()
                     .rule().event(WxConsts.EVT_CLICK).eventKey(MenuKey.HELP).handler(HelpDocHandler.getInstance()).next()
